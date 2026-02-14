@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket System</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .retro-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .input-group {
+            --aug-border-bg: #555;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .input-group input, 
+        .input-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 12px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .input-group textarea {
+            height: 100px;
+            resize: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <main class="retro-card big-panel" data-augmented-ui="tl-clip br-clip border">
+        
+		<div class="project-header">
+			<div class="nav-links">
+				<div class="nav-links-row">
+					<a href="projects.html" class="back-link">< BACK_TO_ARCHIVE</a>
+					<a href="index.html" class="back-link">< BACK_TO_HOME</a>
+				</div>
+				<h1 class="glitch-text">TICKET_SYSTEM&nbsp;</h1>
+			</div>
+			<div class="role-badge">
+				<span>ROLE:</span> LUAU_PROGRAMMER
+			</div>
+		</div>
+
+        <div class="showcase-monitor" data-augmented-ui="tr-clip bl-clip border">
+            <video 
+                src="media/ticket-system/ticket-preview.mp4" 
+                autoplay 
+                loop
+                muted 
+                playsinline 
+            </video>
+            <div class="overlay-text">PLAYING: TICKET_SYSTEM_DEMO.MP4</div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <img src="media/ticket-system/ajustable-hitboxes.png" alt="adjustable-hitboxes">
+                <span class="caption">ADJUSTABE_HITBOXES</span>
+            </div>
+            <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <img src="media/ticket-system/light-indicator.png" alt="light-indicator">
+                <span class="caption">DYNAMIC_INDICATOR</span>
+            </div>
+            <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <img src="media/ticket-system/rides-counter.png" alt="rides-counter">
+                <span class="caption">RIDES_COUNTER</span>
+            </div>
+        </div>
+
+ <div class="tech-panel">
+    <div class="tech-column">
+        <h3>> TECH_STACK</h3>
+        <div class="tag-container" style="margin-top: 15px;">
+            <span class="tech-tag">Luau</span>
+        </div>
+
+        <h3 style="margin-top: 30px;">> KEY_FEATURES</h3>
+        <ul class="data-list">
+            <li>Animated Gate</li>
+            <li>Ride Counter</li>
+			<li>Smart Trash Bin</li>
+        </ul>
+    </div>
+
+    <div class="tech-column">
+        <h3>> CONTACT_FORM</h3>
+        <form id="contactForm" class="retro-form">
+            <div class="input-group" data-augmented-ui="tl-clip br-clip border">
+                <input type="text" id="userName" placeholder="IDENT_USER" required>
+            </div>
+
+            <div class="input-group" data-augmented-ui="tl-clip br-clip border">
+                <textarea id="userMessage" placeholder="ENTER_INQUIRY..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="retro-btn" style="width:100%; margin: 10px 0; border: none; cursor: pointer;">
+                SEND
+            </button>
+        </form>
+    </div>
+</div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-frame" data-augmented-ui="tl-clip br-clip border">
+            <img id="lightbox-img" src="" alt="Enlarged View">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src; 
+                    lightbox.classList.add('active'); 
+                });
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('userName').value;
+                    const msg = document.getElementById('userMessage').value;
+                    const btn = document.getElementById('submitBtn');
+
+                    const targetEmail = "d.larichev2010@gmail.com";
+                    const subject = encodeURIComponent("TICKET_SYSTEM");
+                    const body = encodeURIComponent(`From: ${name}\n ${msg}`);
+
+                    btn.innerText = "[TRANSMITTING...]";
+
+                    setTimeout(() => {
+                        window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+                        btn.innerText = "SEND";
+                    }, 500);
+                });
+            }
+        });
+    </script>
+</body>

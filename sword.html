@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sword Project</title>
+    <link rel="stylesheet" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <main class="retro-card big-panel" data-augmented-ui="tl-clip br-clip border">
+        <div class="project-header">
+            <div class="nav-links">
+                <div class="nav-links-row">
+                    <a href="projects.html" class="back-link">< BACK_TO_ARCHIVE</a>
+                    <a href="index.html" class="back-link">< BACK_TO_HOME</a>
+                </div>
+                <h1 class="glitch-text">SWORD&nbsp;</h1>
+            </div>
+            <div class="role-badge"><span>ROLE:</span> FULL_STACK_DEV</div>
+        </div>
+
+        <div class="showcase-monitor" data-augmented-ui="tr-clip bl-clip border">
+            <video src="media/sword/animation.mp4" autoplay loop muted playsinline></video>
+            <div class="overlay-text">PLAYING: ANIMATION_DEMO.MP4</div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <img src="media/sword/sword-topology.png" alt="topology">
+                <span class="caption">TOPOLOGY</span>
+            </div>
+			
+            <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <video src="media/sword/multiple-targets.mp4" autoplay loop muted playsinline></video>
+                <span class="caption">MULTIPLE_TARGETS</span>
+            </div>
+			
+           <div class="gallery-item" data-augmented-ui="tl-clip br-clip border">
+                <video src="media/sword/single-target.mp4" autoplay loop muted playsinline></video>
+                <span class="caption">SINGLE_TARGET</span>
+            </div>
+        </div>
+
+        <div class="tech-panel">
+            <div class="tech-column">
+                <h3>> TECH_STACK</h3>
+                <div class="tag-container">
+                    <span class="tech-tag">Luau</span>
+                    <span class="tech-tag">Blender</span>
+                    <span class="tech-tag">Moon Animator</span>
+                </div>
+                <h3 style="margin-top: 30px;">> KEY_FEATURES</h3>
+                <ul class="data-list">
+                    <li>Hitbox Detection</li>
+                    <li>Motor6D Rigging</li>
+					<li>Balanced Combat</li>
+                </ul>
+            </div>
+
+            <div class="tech-column">
+                <h3>> CONTACT_FORM</h3>
+                <form id="contactForm" class="retro-form">
+                    <div class="input-group" data-augmented-ui="tl-clip br-clip border">
+                        <input type="text" id="userName" placeholder="IDENT_USER" required>
+                    </div>
+                    <div class="input-group" data-augmented-ui="tl-clip br-clip border">
+                        <textarea id="userMessage" placeholder="ENTER_INQUIRY..." required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="retro-btn" style="width:100%;">SEND</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-frame" data-augmented-ui="tl-clip br-clip border">
+            <img id="lightbox-img" src="" style="display: none;">
+            <video id="lightbox-video" src="" autoplay loop muted playsinline style="display: none;"></video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxVid = document.getElementById('lightbox-video');
+            
+            document.querySelectorAll('.gallery-item img, .gallery-item video').forEach(media => {
+                media.addEventListener('click', () => {
+                    const isVideo = media.tagName.toLowerCase() === 'video';
+                    
+                    if (isVideo) {
+                        lightboxVid.src = media.src;
+                        lightboxVid.style.display = 'block';
+                        lightboxImg.style.display = 'none';
+                    } else {
+                        lightboxImg.src = media.src;
+                        lightboxImg.style.display = 'block';
+                        lightboxVid.style.display = 'none';
+                    }
+                    
+                    lightbox.classList.add('active'); 
+                });
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                lightboxVid.pause();
+                lightboxVid.src = "";
+                lightboxImg.src = "";
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('userName').value;
+                    const msg = document.getElementById('userMessage').value;
+                    const btn = document.getElementById('submitBtn');
+
+                    const targetEmail = "d.larichev2010@gmail.com";
+                    const subject = encodeURIComponent("PROJECT_INQUIRY: SWORD");
+                    const body = encodeURIComponent(`From: ${name}\n\n${msg}`);
+
+                    btn.innerText = "[TRANSMITTING...]";
+                    setTimeout(() => {
+                        window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+                        btn.innerText = "SEND";
+                    }, 500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
