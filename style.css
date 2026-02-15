@@ -55,7 +55,6 @@ body::before {
     z-index: 9999;
 }
 
-
 h1, h2, h3 {
     font-family: var(--font-pixel);
     color: var(--phosphor-main);
@@ -83,7 +82,6 @@ p, li, span {
     text-shadow: none;
 }
 
-
 .retro-card {
     background-color: rgba(10, 20, 10, 0.95);
     padding: 60px 40px;
@@ -102,7 +100,6 @@ p, li, span {
 .big-panel {
     width: 900px;
 }
-
 
 .retro-btn {
     display: inline-block;
@@ -270,7 +267,6 @@ p, li, span {
     text-shadow: none;
 }
 
-
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -386,8 +382,6 @@ p, li, span {
     letter-spacing: 1px;
     transition: all 0.2s ease;
 }
-
-/* --- LIGHTBOX --- */
 
 .lightbox {
     position: fixed;
